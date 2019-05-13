@@ -1,7 +1,7 @@
 import java.util.Map;
 
 public class FloydAlgorithm {
-    private int distancematrix[][];
+    private int[][] distancematrix;
     private int numberofvertices;
     public static final int INFINITY = 999;
 
