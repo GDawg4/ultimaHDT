@@ -11,7 +11,7 @@ public class FloydAlgorithm {
         this.numberofvertices = numberofvertices;
     }
 
-    public void floydwarshall(int adjacencymatrix[][]) {
+    public void floydwarshall(Integer[][] adjacencymatrix) {
         for (int source = 1; source <= numberofvertices; source++) {
             for (int destination = 1; destination <= numberofvertices; destination++) {
                 distancematrix[source][destination] = adjacencymatrix[source][destination];
