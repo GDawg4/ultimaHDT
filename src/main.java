@@ -33,9 +33,11 @@ public class main {
             allSteps.add(sequence[nextOut][destiny]);
             nextOut = sequence[nextOut][destiny];
         }
+        allSteps.add(sequence[nextOut][destiny]);
         return allSteps;
     }
     public static String findCityName(HashMap<String, Integer> map, Integer toBeChecked){
+        //codigo tomado de: https://www.geeksforgeeks.org/iterate-map-java/
         for (Map.Entry<String, Integer> entry: map.entrySet()){
             if (entry.getValue().equals(toBeChecked)){
                 return entry.getKey();
@@ -55,7 +57,7 @@ public class main {
         boolean wantsToContinue = true;
 
         try {
-            File file = new File("C:\\Users\\garoz\\Desktop\\2019\\Estructura de datos\\ultimaHDT\\src\\guategrafo.txt");
+            File file = new File("guategrafo.txt");
 
             BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -83,7 +85,6 @@ public class main {
         }
 
         distancesMatrix = new Integer[cities.size()][cities.size()];
-        sequenceMatrix = new Integer[cities.size()][cities.size()];
 
 
 
@@ -107,6 +108,7 @@ public class main {
         Integer [][] result = floyd.floydWarshall(distancesMatrix);
         Integer [][] sequence = floyd.getSequence();
 
+        floyd.printSolution(result);
         do {
             Scanner myObj = new Scanner(System.in);  // Create a Scanner object
 
@@ -156,7 +158,6 @@ public class main {
                     try{
                         distancesMatrix[cities.get(originInterrupted)][cities.get(destinyInterrupted)] = 99999;
                         result = floyd.floydWarshall(distancesMatrix);
-                        floyd.printSolution(result);
                     }catch (NullPointerException e){
                         System.out.println("Las ciudades ingresadas no existen, favor intentar nuevamente");
                     }

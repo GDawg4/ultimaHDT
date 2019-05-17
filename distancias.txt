@@ -1,0 +1,4 @@
+Antigua,Guatemala,47
+Guatemala,Panajachel,121
+Antigua,Panajachel,76
+sequence[nextOut][destiny]
