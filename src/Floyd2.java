@@ -1,16 +1,24 @@
 public class Floyd2 {
     final static int INF = 99999;
-    Integer V;
+    private Integer V;
+    Integer [][] sequence;
+
+    public Integer[][] getSequence() {
+        return sequence;
+    }
 
     public Floyd2(Integer size){
         this.V = size;
     }
 
-    Integer[][] floydWarshall(Integer graph[][])
-    {
-        Integer dist[][] = new Integer[V][V];
+    Integer[][] floydWarshall(Integer[][] graph) {
+        this.sequence = new Integer[V][V];
+        Integer[][] dist = new Integer[V][V];
         int i, j, k;
 
+        for (i = 0; i < V; i++)
+            for (j = 0; j < V; j++)
+                sequence[i][j] = j;
         /* Initialize the solution matrix same as input graph matrix.
            Or we can say the initial values of shortest distances
            are based on shortest paths considering no intermediate
@@ -28,26 +36,25 @@ public class Floyd2 {
           ----> After the end of an iteration, vertex no. k is added
                 to the set of intermediate vertices and the set
                 becomes {0, 1, 2, .. k} */
-        for (k = 0; k < V; k++)
-        {
+        for (k = 0; k < V; k++) {
             // Pick all vertices as source one by one
-            for (i = 0; i < V; i++)
-            {
+            for (i = 0; i < V; i++) {
                 // Pick all vertices as destination for the
                 // above picked source
-                for (j = 0; j < V; j++)
-                {
+                for (j = 0; j < V; j++) {
                     // If vertex k is on the shortest path from
                     // i to j, then update the value of dist[i][j]
-                    if (dist[i][k] + dist[k][j] < dist[i][j])
+                    if (dist[i][k] + dist[k][j] < dist[i][j]) {
                         dist[i][j] = dist[i][k] + dist[k][j];
+                        sequence[i][j] = k;
+                    }
                 }
             }
         }
-
         // Print the shortest distance matrix
         return dist;
     }
+
     void printSolution(Integer dist[][])
     {
         System.out.println("The following matrix shows the shortest "+
